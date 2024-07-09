@@ -8,7 +8,7 @@ from assets.pages.vocabulary import Vocabulary
 def main(page: ft.Page) -> ft.Page:
 
     # load data files
-    page.data_file = "./assets/data/cache.json"
+    page.data_file = "./assets/data/local.json"
     page.strings_file = "./assets/value/strings.json"
     with open(page.data_file, encoding="utf-8") as f:
         read_file = f.read()
