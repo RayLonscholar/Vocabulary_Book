@@ -6,20 +6,13 @@ class Vocabulary(ft.UserControl):
     def __init__(self, page):
 
     # top bar
+        def back_button_clicked(e):
+            pass
         def back_home_button_clicked(e):
             page.go("/")
-        self.back_home_button = ft.TextButton(
-            content = ft.Container(
-                content = ft.Column(
-                    controls = [
-                        ft.Text(value = f"{page.strings['vocabulary_back_home_button']}", size = 20),
-                    ],
-                    alignment = ft.MainAxisAlignment.CENTER,
-                    spacing = 5,
-                )
-            ),
-            on_click = back_home_button_clicked
-        )
+        def settings_button_clicked(e):
+            pass
+        self.vocabulary_page_top_bar = custom_widgets.TopBar(ft.colors.SECONDARY_CONTAINER, "ABC")
 
     # kind of vocabulary
         # tag list
@@ -47,12 +40,29 @@ class Vocabulary(ft.UserControl):
 
     # level 2
         # vocabulary in tag
+        def vocabulary_button_clicked(e):
+            print("vocabulary_button_clicked")
+        def vocabulary_button_tag_clicked(e):
+            print("vocabulary_button_tag_clicked")
         def create_vocabulary_button():
             self.vocabulary_button_list.controls = []
             for memory in page.data_file_content['data']:
-                if "test1" in page.data_file_content['data'][f'{memory}']['tag']:
+                vocabulary_content = page.data_file_content['data'][f'{memory}']
+                if "test1" in vocabulary_content['tag']:
+                    InformationButton = custom_widgets.InformationButton(
+                        f"{memory}",
+                        f"主旨：{vocabulary_content['subject']}",
+                        18,
+                        15,
+                        vocabulary_button_clicked
+                    )
+                    if vocabulary_content['tag']:
+                        for memory in vocabulary_content['tag']:
+                            InformationButton.content.content.controls[2].controls.append(
+                                custom_widgets.InformationButton_tag(f"{memory}", 13, vocabulary_button_tag_clicked)
+                            )
                     self.vocabulary_button_list.controls.append(
-                        custom_widgets.TextButton(f"{memory}", 18)
+                        InformationButton
                     )
             page.update()
         self.vocabulary_button_list = ft.Column(
@@ -65,7 +75,7 @@ class Vocabulary(ft.UserControl):
                 ft.Column(
                     expand = True,
                     controls = [
-                        self.back_home_button,
+                        self.vocabulary_page_top_bar,
                         self.tag_button_list,
                         self.vocabulary_button_list,
                     ]
