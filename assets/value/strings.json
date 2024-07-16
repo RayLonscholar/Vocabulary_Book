@@ -1,13 +1,15 @@
 {
     "en": {
-        "page_title": "Vocabulary Book",
+        "window_title": "Vocabulary Book",
+        "home_title": "Vocabulary Book",
         "home_vocabulary_button": "My Vocabulary",
         "home_add_vocabulary_button": "Add new vocabulary",
         "home_settings_button": "Settings",
         "vocabulary_back_home_button": "Back home"
     },
     "zh-tw": {
-        "page_title": "詞彙書",
+        "window_title": "詞彙書",
+        "home_title": "詞彙書",
         "home_vocabulary_button": "我的詞彙",
         "home_add_vocabulary_button": "新增詞彙",
         "home_settings_button": "設定",
