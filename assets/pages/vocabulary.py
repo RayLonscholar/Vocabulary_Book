@@ -7,12 +7,20 @@ class Vocabulary(ft.UserControl):
 
     # top bar
         def back_button_clicked(e):
-            pass
+            if self.tag_button_list.visible == True:
+                page.go("/")
+            if self.vocabulary_button_list.visible == True:
+                for memory in self.choose_vocabulary:
+                    memory.visible = False
+                for memory in self.kind_of_vocabulary:
+                    memory.visible = True
+            page.update()
+
         def back_home_button_clicked(e):
             page.go("/")
         def settings_button_clicked(e):
             pass
-        self.vocabulary_page_top_bar = custom_widgets.TopBar(ft.colors.SECONDARY_CONTAINER, "ABC")
+        self.vocabulary_page_top_bar = custom_widgets.ButtonTopBar(ft.colors.SECONDARY_CONTAINER, "ABC", back_button_clicked, back_home_button_clicked, settings_button_clicked)
 
     # kind of vocabulary
         # tag list
@@ -39,7 +47,7 @@ class Vocabulary(ft.UserControl):
         create_tag_button()
 
     # level 2
-        # vocabulary in tag
+        # choose vocabulary
         def vocabulary_button_clicked(e):
             print("vocabulary_button_clicked")
         def vocabulary_button_tag_clicked(e):
@@ -58,16 +66,23 @@ class Vocabulary(ft.UserControl):
                     )
                     if vocabulary_content['tag']:
                         for memory in vocabulary_content['tag']:
-                            InformationButton.content.content.controls[2].controls.append(
+                            InformationButton.content.content.controls[2].content.controls[0].controls.append(
                                 custom_widgets.InformationButton_tag(f"{memory}", 13, vocabulary_button_tag_clicked)
                             )
                     self.vocabulary_button_list.controls.append(
                         InformationButton
                     )
+            self.vocabulary_button_list.visible = True
             page.update()
         self.vocabulary_button_list = ft.Column(
             controls = []
         )
+        # all widgets in this layout
+        self.choose_vocabulary = [
+            self.vocabulary_button_list
+        ]
+    # level 3
+        # display vocabulary detail </>
 
     def view(self, page: ft.Page, params: Params, basket: Basket) -> ft.View:
         return ft.View(

@@ -1,10 +1,16 @@
 import flet as ft
 from flet_route import Params, Basket
+import assets.pages.widgets.custom_widgets as custom_widgets
 
 class Home(ft.UserControl):
 
     # initialization
     def __init__(self, page):
+
+    # top bar
+        self.home_page_top_bar = custom_widgets.TopBar(ft.colors.SECONDARY_CONTAINER, f"{page.strings['home_title']}")
+    
+    # open vocabulary page
         def vocabulary_button_clicked(e):
             page.go("/vocabulary")
 
@@ -20,6 +26,7 @@ class Home(ft.UserControl):
             ),
             on_click = vocabulary_button_clicked
         )
+    # open add new vocabulary of page
         self.add_vocabulary_button = ft.TextButton(
             content = ft.Container(
                 content = ft.Column(
@@ -31,6 +38,7 @@ class Home(ft.UserControl):
                 )
             )
         )
+    # open setting page
         self.settings_button = ft.TextButton(
             content = ft.Container(
                 content = ft.Column(
@@ -50,6 +58,7 @@ class Home(ft.UserControl):
                 ft.Column(
                     expand = True,
                     controls = [
+                        self.home_page_top_bar,
                         self.vocabulary_button,
                         self.add_vocabulary_button,
                         self.settings_button,

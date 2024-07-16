@@ -5,6 +5,7 @@ import json
 from assets.pages.home import Home
 from assets.pages.vocabulary import Vocabulary
 
+
 def main(page: ft.Page) -> ft.Page:
 
     # load data files
@@ -21,12 +22,12 @@ def main(page: ft.Page) -> ft.Page:
     # window settings
     page.window_width = 600
     page.window_height = 600
-    page.title = page.strings['page_title']
+    page.title = page.strings['window_title']
     # main theme
     theme = ft.Theme()
     theme.page_transitions.windows = ft.PageTransitionTheme.NONE # disable animation transition
     page.theme = theme
-    page.theme_mode = "Dark"
+    page.theme_mode = "DARK"
     page.update()
 
     # main routes
@@ -46,6 +47,7 @@ def main(page: ft.Page) -> ft.Page:
         page = page,
         app_routes = routes,
     )
+    print(page.route)
     page.go(page.route)
     page.update()
 
