@@ -125,3 +125,27 @@ def InformationButton_tag(value: str = "", text_size: int = 10, on_click = None)
     )
 
 # VocabularyDetail </>
+def VocabularyDetail(title: str = "", subject: str = "", content: str = ""):
+    return ft.Container(
+        height = 40,
+        content = ft.Column(
+            controls = [
+                ft.Row(
+                    controls = [
+                        ft.Text(value = title, size = 16),
+                        
+                    ]
+                ),
+                ft.Row(
+                    controls = [
+                        ft.Text(value = subject, size = 14)
+                    ]
+                ),
+                ft.Row(
+                    controls = [
+                        ft.Text(value = content, size = 14)
+                    ]
+                ),
+            ]
+        )
+    )
