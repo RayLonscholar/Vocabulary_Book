@@ -60,7 +60,8 @@ class Vocabulary(ft.UserControl):
             create_detail(
                 f'{self.selected_vocabulary}',
                 page.data_file_content['data'][f'{self.selected_vocabulary}']['subject'],
-                page.data_file_content['data'][f'{self.selected_vocabulary}']['content']
+                page.data_file_content['data'][f'{self.selected_vocabulary}']['content'],
+                page.data_file_content['data'][f'{self.selected_vocabulary}']['tag']
             )
             for memory in self.choose_vocabulary:
                 memory.visible = False
@@ -101,15 +102,32 @@ class Vocabulary(ft.UserControl):
         ]
     # level 3
         # display detail
-        def create_detail(title: str, subject: str, content: str):
+        def play_audio(e):
+            self.audio.play()
+        def create_detail(title: str, subject: str, content: str, tag: list):
             self.detail.controls = []
-            self.detail.controls.append(
-                custom_widgets.VocabularyDetail(title, subject, content)
+            self.audio = ft.Audio(
+                src = f"https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q={title}",
+                autoplay=False,
+                volume=1,
+                balance=0,
             )
+            VocabularyDetail = custom_widgets.VocabularyDetail(title, subject, content, play_audio)
+            for memory in tag:
+                VocabularyDetail.content.controls[1].controls[1].controls.append(
+                    custom_widgets.VocabularyDetail_tag(f"{memory}")
+                )
+            for memory in [
+                self.audio,
+                VocabularyDetail
+            ]:
+                self.detail.controls.append(memory)
+
             page.update()
         self.detail = ft.Column(
             controls = []
         )
+        # all widgets in this layout
         self.display_detail = [
             self.detail
         ]

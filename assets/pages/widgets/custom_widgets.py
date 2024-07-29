@@ -28,7 +28,7 @@ def ButtonTopBar(bgcolor: str = None, title: str = "" , on_click1 = None,  on_cl
                         ft.IconButton(
                             icon = ft.icons.KEYBOARD_BACKSPACE,
                             tooltip = "Back",
-                            icon_size=20,
+                            icon_size = 20,
                             on_click = on_click1
                         ),
                         ft.Text(value = title, size = 20)
@@ -41,13 +41,13 @@ def ButtonTopBar(bgcolor: str = None, title: str = "" , on_click1 = None,  on_cl
                         ft.IconButton(
                             icon = ft.icons.HOME,
                             tooltip = "Back home",
-                            icon_size=20,
+                            icon_size = 20,
                             on_click = on_click2
                         ),
                         ft.IconButton(
                             icon = ft.icons.SETTINGS,
                             tooltip = "Settings",
-                            icon_size=20,
+                            icon_size = 20,
                             on_click = on_click2
                         )
                     ]
@@ -100,7 +100,7 @@ def InformationButton(value: str = "", value2: str = "", value_text_size: int = 
                                 ft.IconButton(
                                     icon = ft.icons.ADD_ROUNDED,
                                     tooltip = "Add tag",
-                                    icon_size=20,
+                                    icon_size = 20,
                                 )
                             ]
                         )
@@ -124,16 +124,30 @@ def InformationButton_tag(value: str = "", text_size: int = 10, on_click = None)
         on_click = on_click
     )
 
-# VocabularyDetail </>
-def VocabularyDetail(title: str = "", subject: str = "", content: str = ""):
+# VocabularyDetail
+def VocabularyDetail(title: str = "", subject: str = "", content: str = "", on_click = None):
     return ft.Container(
-        height = 40,
+        expand = True,
         content = ft.Column(
             controls = [
                 ft.Row(
                     controls = [
-                        ft.Text(value = title, size = 16),
-                        
+                        ft.Text(value = title, size = 16, expand = True),
+                    ]
+                ),
+                ft.Row(
+                    controls = [
+                        ft.IconButton(
+                            icon = ft.icons.MULTITRACK_AUDIO_ROUNDED,
+                            tooltip = "Play Audio",
+                            icon_size = 20,
+                            on_click = on_click
+                        ),
+                        ft.Row(
+                            expand = True,
+                            scroll = "AUTO",
+                            controls = []
+                        )
                     ]
                 ),
                 ft.Row(
@@ -146,6 +160,23 @@ def VocabularyDetail(title: str = "", subject: str = "", content: str = ""):
                         ft.Text(value = content, size = 14)
                     ]
                 ),
+                ft.Row(
+                    controls = [
+                        ft.ElevatedButton("123")
+                    ]
+                )
             ]
+        )
+    )
+# VocabularyDetail's tag (DLC)
+def VocabularyDetail_tag(value):
+    return ft.TextButton(
+        content = ft.Container(
+            content = ft.Row(
+                wrap = True,
+                controls = [
+                    ft.Text(value = value)
+                ]
+            )
         )
     )
