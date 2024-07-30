@@ -4,6 +4,7 @@ import ctypes
 import json
 from assets.pages.home import Home
 from assets.pages.vocabulary import Vocabulary
+from assets.pages.settings import Settings
 
 
 def main(page: ft.Page) -> ft.Page:
@@ -41,6 +42,11 @@ def main(page: ft.Page) -> ft.Page:
             url = "/vocabulary",
             clear = True,
             view = Vocabulary(page).view,
+        ),
+        path(
+            url = "/settings",
+            clear = True,
+            view = Settings(page).view,
         ),
     ]
     Routing(

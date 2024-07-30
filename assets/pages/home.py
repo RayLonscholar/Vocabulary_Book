@@ -39,6 +39,8 @@ class Home(ft.UserControl):
             )
         )
     # open setting page
+        def settings_button_clicked(e):
+            page.go("/settings")
         self.settings_button = ft.TextButton(
             content = ft.Container(
                 content = ft.Column(
@@ -48,7 +50,8 @@ class Home(ft.UserControl):
                     alignment = ft.MainAxisAlignment.CENTER,
                     spacing = 5,
                 )
-            )
+            ),
+            on_click = settings_button_clicked
         )
     
     # display view

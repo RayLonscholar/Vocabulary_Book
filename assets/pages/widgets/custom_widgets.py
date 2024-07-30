@@ -125,7 +125,7 @@ def InformationButton_tag(value: str = "", text_size: int = 10, on_click = None)
     )
 
 # VocabularyDetail
-def VocabularyDetail(title: str = "", subject: str = "", content: str = "", on_click = None):
+def VocabularyDetail(title: str = "", subject: str = "", content: str = "", on_click = None) -> ft.Container:
     return ft.Container(
         expand = True,
         content = ft.Column(
@@ -161,15 +161,16 @@ def VocabularyDetail(title: str = "", subject: str = "", content: str = "", on_c
                     ]
                 ),
                 ft.Row(
+                    alignment = ft.MainAxisAlignment.END,
                     controls = [
-                        ft.ElevatedButton("123")
+                        ft.ElevatedButton("Edit")
                     ]
                 )
             ]
         )
     )
 # VocabularyDetail's tag (DLC)
-def VocabularyDetail_tag(value):
+def VocabularyDetail_tag(value) -> ft.TextButton:
     return ft.TextButton(
         content = ft.Container(
             content = ft.Row(
@@ -178,5 +179,35 @@ def VocabularyDetail_tag(value):
                     ft.Text(value = value)
                 ]
             )
+        )
+    )
+
+# Volume settings
+def VolumeSettings(on_change = None,  on_click = None) -> ft.Container:
+    return ft.Container(
+        content = ft.Column(
+            controls = [
+                ft.Row(
+                    controls = [
+                        ft.Text(
+                            value = "目前音量："
+                        ),
+                        ft.IconButton(
+                            icon = ft.icons.MULTITRACK_AUDIO_ROUNDED,
+                            tooltip = "Test",
+                            icon_size = 20,
+                            on_click = on_click
+                        )
+                    ]
+                ),
+                ft.Slider(
+                    min = 0,
+                    max = 100,
+                    divisions = 100,
+                    round = 0,
+                    label = "{value}%",
+                    on_change = on_change
+                )
+            ]
         )
     )
